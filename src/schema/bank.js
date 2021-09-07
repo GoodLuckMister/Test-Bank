@@ -8,7 +8,7 @@ const BankSchema = new Schema({
         type: String,
         required: [true, 'Set name for contact'],
     },
-    InterestRate: {
+    interestRate: {
         type: Number,
     },
     maximumLoan: {

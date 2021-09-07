@@ -4,7 +4,7 @@ const { HttpCode } = require('../helpers/constants')
 
 const schemaCreateBank = Joi.object({
     bankName: Joi.string().min(3).max(100).required(),
-    InterestRate: Joi.number().min(6).max(1000000).optional(),
+    interestRate: Joi.number().min(6).max(1000000).optional(),
     maximumLoan: Joi.number().min(6).max(1000000).optional(),
     minimumDownPayment: Joi.number().min(6).max(1000000).optional(),
     loanTerm: Joi.boolean().optional(),
@@ -13,7 +13,7 @@ const schemaCreateBank = Joi.object({
 
 const schemaUpdateBank = Joi.object({
     bankName: Joi.string().min(3).max(1000000).optional(),
-    InterestRate: Joi.number().min(6).max(1000000).optional(),
+    interestRate: Joi.number().min(6).max(1000000).optional(),
     maximumLoan: Joi.number().min(6).max(1000000).optional(),
     minimumDownPayment: Joi.number().min(6).max(1000000).optional(),
     loanTerm: Joi.boolean().optional(),
