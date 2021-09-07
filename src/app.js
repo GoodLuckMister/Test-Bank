@@ -43,7 +43,7 @@ app.use((req, res) => {
   res.status(HttpCode.NOT_FOUND).json({
     status: 'error',
     code: HttpCode.NOT_FOUND,
-    message: `Use api on routes ${req.baseUrl}/api/contacts`,
+    message: `Use api on routes ${req.baseUrl}/api/banks`,
     data: 'Not found',
   })
 })

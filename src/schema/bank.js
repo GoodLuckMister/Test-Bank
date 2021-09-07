@@ -33,7 +33,7 @@ const BankSchema = new Schema({
 
 BankSchema.plugin(mongoosePaginate)
 
-const Bank = mongoose.model('contact', BankSchema)
+const Bank = mongoose.model('banks', BankSchema)
 
 module.exports = Bank
 

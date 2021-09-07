@@ -10,12 +10,7 @@ const HttpCode = {
     INTERNAL_SERVER_ERROR: 500
 }
 
-const SubScribe = {
-    STARTER: "starter",
-    PRO: "pro",
-    BUSINESS: "business"
-}
 
 
-module.exports = { HttpCode, SubScribe }
+module.exports = { HttpCode }
 
