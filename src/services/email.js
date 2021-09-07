@@ -9,7 +9,7 @@ class EmailService {
                 this.link = 'https://26c7-185-209-58-177.ngrok.io'
                 break
             case 'production':
-                this.link = 'link production'
+                this.link = process.env.ADDRESS_SERVER
                 break
             default:
                 this.link = 'https://26c7-185-209-58-177.ngrok.io '
