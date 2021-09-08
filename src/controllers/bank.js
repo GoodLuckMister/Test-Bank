@@ -1,64 +1,23 @@
-const { HttpCode } = require('../helpers/constants')
+const HttpCode = require('../helpers')
 const { BankService } = require('../services')
 
-const BanksService = new BankService()
+const banksService = new BankService()
 
 const getAll = async (req, res, next) => {
     try {
-
-        const userId = req.user.id
-        const banks = await BanksService.getAll(userId, req.query)
-
+        const banks = await banksService.getAll()
         res.status(HttpCode.OK).json({
             status: 'success',
             code: HttpCode.OK,
-            data: { ...banks }
+            data: { banks }
         })
     } catch (e) {
         next(e)
     }
 }
-
-
 const getById = async (req, res, next) => {
     try {
-        const userId = req.user.id
-        const bank = await BanksService.getById(userId, req.params)
-        return res.status(HttpCode.OK).json({
-            status: 'success',
-            code: HttpCode.OK,
-            data: { bank }
-        })
-
-    } catch (e) {
-        next({
-            status: HttpCode.NOT_FOUND,
-            message: 'Not found contact',
-            data: 'Not found'
-        })
-    }
-}
-
-
-const create = async (req, res, next) => {
-    try {
-        const userId = req.user.id
-        const bank = await BanksService.create(userId, req.body)
-        return res.status(HttpCode.CREATED).json({
-            status: 'success',
-            code: HttpCode.CREATED,
-            data: { bank }
-        })
-    } catch (e) {
-        next(e)
-    }
-}
-
-const update = async (req, res, next) => {
-    try {
-        const userId = req.user.id
-        const bank = await BanksService.update(userId, req.params, req.body)
-
+        const bank = await banksService.getById(req.params)
         if (bank) {
             return res.status(HttpCode.OK).json({
                 status: 'success',
@@ -68,7 +27,40 @@ const update = async (req, res, next) => {
         } else {
             return next({
                 status: HttpCode.NOT_FOUND,
-                message: 'Not found contact',
+                message: 'Not found bank',
+                data: 'Not found',
+            })
+        }
+
+    } catch (e) {
+        next(e)
+    }
+}
+const create = async (req, res, next) => {
+    try {
+        const bank = await banksService.create(req.body)
+        res.status(HttpCode.OK).json({
+            status: 'success',
+            code: HttpCode.CREATED,
+            data: { bank }
+        })
+    } catch (e) {
+        next(e)
+    }
+}
+const update = async (req, res, next) => {
+    try {
+        const bank = await banksService.update(req.params, req.body)
+        if (bank) {
+            return res.status(HttpCode.OK).json({
+                status: 'success',
+                code: HttpCode.OK,
+                data: { bank }
+            })
+        } else {
+            return next({
+                status: HttpCode.NOT_FOUND,
+                message: 'Not found bank',
                 data: 'Not found',
             })
         }
@@ -78,11 +70,9 @@ const update = async (req, res, next) => {
     }
 }
 
-
 const remove = async (req, res, next) => {
     try {
-        const userId = req.user.id
-        const bank = await BanksService.remove(userId, req.params)
+        const bank = await banksService.remove(req.params)
         if (bank) {
             return res.status(HttpCode.OK).json({
                 status: 'success',
@@ -92,7 +82,7 @@ const remove = async (req, res, next) => {
         } else {
             return next({
                 status: HttpCode.NOT_FOUND,
-                message: 'Not found contact',
+                message: 'Not found bank',
                 data: 'Not found',
             })
         }

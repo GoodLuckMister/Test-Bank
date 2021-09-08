@@ -1,4 +1,4 @@
-const db = require('./data-base')
+const db = require('./banks')
 
 module.exports = db
 

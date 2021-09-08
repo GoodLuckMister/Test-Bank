@@ -1,37 +1,31 @@
 const { BankRepository } = require('../repository')
 
-class BanksService {
+class BankService {
     constructor() {
         this.repositories = {
-            banks: new BankRepository()
+            contacts: new BankRepository()
         }
     }
-
-    async getAll(userId, query) {
-        const data = await this.repositories.banks.getAll(userId, query)
-        const { page, docs: banks, totalDocs: total, limit } = data
-        return { banks, page, limit, total }
-    }
-
-    async getById(userId, { id }) {
-        const data = await this.repositories.banks.getById(userId, id)
+    async getAll() {
+        const data = await this.repositories.contacts.getAll()
         return data
     }
-
-    async create(userId, body) {
-        const data = await this.repositories.banks.create(userId, body)
+    async getById({ id }) {
+        const data = await this.repositories.contacts.getById(id)
         return data
     }
-
-    async update(userId, { id }, body) {
-        const data = await this.repositories.banks.update(userId, id, body)
+    async create(body) {
+        const data = await this.repositories.contacts.create(body)
         return data
     }
-
-    async remove(userId, { id }) {
-        const data = await this.repositories.banks.remove(userId, id)
+    async update({ id }, body) {
+        const data = await this.repositories.contacts.update(id, body)
+        return data
+    }
+    async remove({ id }) {
+        const data = await this.repositories.contacts.remove(id)
         return data
     }
 
 }
-module.exports = BanksService
+module.exports = BankService

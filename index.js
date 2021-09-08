@@ -1,13 +1,11 @@
 const app = require('./src/app')
 const client = require('./src/db')
 
-require('dotenv').config()
-
-
 const PORT = process.env.PORT || 3000
 
 client.then(() => {
-    app.listen(PORT, async () => {
+
+    app.listen(PORT, () => {
         console.log(`Server running. Use our API on port: ${PORT}`)
     })
 }).catch((e) => {

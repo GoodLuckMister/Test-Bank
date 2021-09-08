@@ -1,10 +1,4 @@
 
-const UsersRepository = require('./users')
-const BankRepository = require('./banks')
+const BankRepository = require('./bank')
 
-
-module.exports = {
-    UsersRepository,
-    BankRepository
-}
-
+module.exports = { BankRepository }

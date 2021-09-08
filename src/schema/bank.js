@@ -1,29 +1,12 @@
-const mongoose = require('mongoose')
-const { Schema, SchemaTypes } = mongoose
-const mongoosePaginate = require('mongoose-paginate-v2')
+const mongoose = require('mongoose');
+const { Schema } = mongoose
 
 
-const BankSchema = new Schema({
-    bankName: {
+const bankSchema = new Schema({
+    name: {
         type: String,
         required: [true, 'Set name for contact'],
     },
-    interestRate: {
-        type: Number,
-    },
-    maximumLoan: {
-        type: Number,
-    },
-    minimumDownPayment: {
-        type: Number,
-    },
-    loanTerm: {
-        type: Number,
-    },
-    owner: {
-        type: SchemaTypes.ObjectId,
-        ref: 'user',
-    }
 },
     {
         versionKey: false,
@@ -31,10 +14,7 @@ const BankSchema = new Schema({
     }
 )
 
-BankSchema.plugin(mongoosePaginate)
+const bank = mongoose.model('bank', bankSchema);
 
-const Bank = mongoose.model('banks', BankSchema)
-
-module.exports = Bank
-
+module.exports = bank
 

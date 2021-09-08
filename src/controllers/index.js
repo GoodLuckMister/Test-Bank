@@ -2,7 +2,7 @@ const { getAll,
     getById,
     create,
     update,
-    remove } = require('./contacts')
+    remove } = require('./bank')
 
 
 module.exports = {

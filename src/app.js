@@ -1,41 +1,18 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
-const helmet = require('helmet')
-const rateLimit = require("express-rate-limit")
-const { HttpCode } = require('./helpers/constants')
-const { apiLimit, jsonLimit } = require('./config/rate-limit.json')
-const { ErrorHandler } = require('./helpers/errorhandler')
-const banksRouter = require('./api/banks')
-const usersRouter = require('./api/users')
 
-require('dotenv').config()
+const { HttpCode } = require('./helpers')
 
-
+const banksRouter = require('./api')
 
 const app = express()
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
-
-app.use(helmet())
-app.get('env') !== 'test' && app.use(logger(formatsLogger))
+app.use(logger(formatsLogger))
 app.use(cors())
-app.use(express.json({ limit: jsonLimit }))
-
-app.use("/api/", rateLimit({
-  windowMs: apiLimit.windowMs,
-  max: apiLimit.max,
-  handler: (req, res, next) => {
-    next(
-      new ErrorHandler(
-        HttpCode.BAD_REQUEST,
-        'Исчерпано количество запросов за 15 минут'
-      )
-    )
-  }
-}))
-app.use('/api/users', usersRouter)
+app.use(express.json())
 
 app.use('/api/banks', banksRouter)
 
@@ -57,5 +34,8 @@ app.use((err, req, res, next) => {
     data: err.status === 500 ? 'Internal server error' : err.data,
   })
 })
+
+
+
 
 module.exports = app
