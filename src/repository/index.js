@@ -1,4 +1,4 @@
 
-const BankRepository = require('./bank')
+const ProductRepository = require('./product')
 
-module.exports = { BankRepository }
+module.exports = { ProductRepository }

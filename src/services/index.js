@@ -1,3 +1,3 @@
-const BankService = require('./bank')
+const ProductService = require('./product')
 
-module.exports = { BankService }
+module.exports = { ProductService }

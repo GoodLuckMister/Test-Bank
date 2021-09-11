@@ -1,8 +1,8 @@
-const bank = require('../schema/bank')
+const product = require('../schema/product')
 
-class BankRepository {
+class ProductRepository {
     constructor() {
-        this.model = bank
+        this.model = product
     }
     async getAll() {
         const result = await this.model.find({})
@@ -29,8 +29,9 @@ class BankRepository {
     }
 
     async remove(id) {
+        console.log(id)
         const result = await this.model.findByIdAndDelete({ _id: id })
         return result
     }
 }
-module.exports = BankRepository
+module.exports = ProductRepository

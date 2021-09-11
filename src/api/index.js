@@ -1,4 +1,4 @@
-const router = require('./banks')
+const router = require('./product')
 
 module.exports = router
 

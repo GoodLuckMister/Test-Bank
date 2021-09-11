@@ -1,15 +1,15 @@
 const HttpCode = require('../helpers')
-const { BankService } = require('../services')
+const { ProductService } = require('../services')
 
-const banksService = new BankService()
+const productService = new ProductService()
 
 const getAll = async (req, res, next) => {
     try {
-        const banks = await banksService.getAll()
+        const products = await productService.getAll()
         res.status(HttpCode.OK).json({
             status: 'success',
             code: HttpCode.OK,
-            data: { banks }
+            data: { products }
         })
     } catch (e) {
         next(e)
@@ -17,12 +17,12 @@ const getAll = async (req, res, next) => {
 }
 const getById = async (req, res, next) => {
     try {
-        const bank = await banksService.getById(req.params)
-        if (bank) {
+        const product = await productService.getById(req.params)
+        if (product) {
             return res.status(HttpCode.OK).json({
                 status: 'success',
                 code: HttpCode.OK,
-                data: { bank }
+                data: { product }
             })
         } else {
             return next({
@@ -38,11 +38,11 @@ const getById = async (req, res, next) => {
 }
 const create = async (req, res, next) => {
     try {
-        const bank = await banksService.create(req.body)
+        const product = await productService.create(req.body)
         res.status(HttpCode.OK).json({
             status: 'success',
             code: HttpCode.CREATED,
-            data: { bank }
+            data: { product }
         })
     } catch (e) {
         next(e)
@@ -50,17 +50,17 @@ const create = async (req, res, next) => {
 }
 const update = async (req, res, next) => {
     try {
-        const bank = await banksService.update(req.params, req.body)
-        if (bank) {
+        const product = await productService.update(req.params, req.body)
+        if (product) {
             return res.status(HttpCode.OK).json({
                 status: 'success',
                 code: HttpCode.OK,
-                data: { bank }
+                data: { product }
             })
         } else {
             return next({
                 status: HttpCode.NOT_FOUND,
-                message: 'Not found bank',
+                message: 'Not found product',
                 data: 'Not found',
             })
         }
@@ -72,17 +72,17 @@ const update = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
     try {
-        const bank = await banksService.remove(req.params)
-        if (bank) {
+        const product = await productService.remove(req.params)
+        if (product) {
             return res.status(HttpCode.OK).json({
                 status: 'success',
                 code: HttpCode.OK,
-                data: { bank }
+                data: { product }
             })
         } else {
             return next({
                 status: HttpCode.NOT_FOUND,
-                message: 'Not found bank',
+                message: 'Not found product',
                 data: 'Not found',
             })
         }
