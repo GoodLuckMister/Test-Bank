@@ -29,7 +29,6 @@ class ProductRepository {
     }
 
     async remove(id) {
-        console.log(id)
         const result = await this.model.findByIdAndDelete({ _id: id })
         return result
     }

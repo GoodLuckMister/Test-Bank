@@ -1,3 +1,4 @@
 const ProductService = require('./product')
+const CommentService = require('./comment')
 
-module.exports = { ProductService }
+module.exports = { ProductService, CommentService }

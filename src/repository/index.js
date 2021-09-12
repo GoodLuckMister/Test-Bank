@@ -1,4 +1,5 @@
 
 const ProductRepository = require('./product')
+const CommentRepository = require('./comment')
 
-module.exports = { ProductRepository }
+module.exports = { ProductRepository, CommentRepository }

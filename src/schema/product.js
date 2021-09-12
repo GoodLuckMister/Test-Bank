@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose
+const { Schema, SchemaTypes } = mongoose
 
 
 const productSchema = new Schema({
@@ -24,6 +24,7 @@ const productSchema = new Schema({
     },
     weight: {
         type: String,
+        default: '200gr',
     },
     comments: {
         type: Array,
